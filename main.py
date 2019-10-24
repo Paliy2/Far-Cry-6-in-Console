@@ -1,8 +1,52 @@
 import random
+import math
 
 def type_of_number(number, Ulama, Prime, Happy):
     pass
     return type_of_number
+
+def list_digits_of_num(num):
+    """
+    this function makes a list of digits of given number
+    this function is neccesary for generating happy numbers
+    """
+    num_lenght = int(math.log10(num))+1
+    digits_of_num = []
+    m = 0
+    while m < num_lenght:
+        m +=1
+        digits_of_num.append(0)   
+    
+    for k in range(num_lenght):
+        digit = num // 10**k  % 10
+        digits_of_num[num_lenght - (k+1)] = digit
+    return(digits_of_num)    
+
+def generate_happy(max):
+    """
+    this function generates list of happy numbers
+    """
+    happy = []
+    for i in range(1, max):
+        checker = 0
+        a = len(list_digits_of_num(i))    
+        lap = 0
+        m = i
+        while lap < 100:
+            lap += 1    
+            
+            for k in range(a):
+                checker += list_digits_of_num(m)[k] ** 2
+            
+            m = checker
+            a = len(list_digits_of_num(m))
+            
+            if checker == 1:
+                happy.append(i)
+                break
+            else:
+                checker = 0
+    return(happy)
 
 #complition for taple function                                                          TABLE COMPLITION
 def output(lst):
@@ -41,15 +85,65 @@ def generate_prime(max):
         if div_count == 1:
             prime_list.append(i)
     return(prime_list)
- 
-# main loop of the gameimport random
-def sum_one_lst(lst):
-    summa = 0
-    for i in lst:
-        summa += i
-    return summa
 
-#try complete this
+def def_to_check(a, b):
+    return True
+
+def sum_one_lst(lst):
+    """
+    [0, 3, 5, 2] tipa 0  ^
+                      3  |
+                      5  |
+                      2  |
+
+    [0, 3, 5, 2] <-- [8, 2, 0, 0]
+    [1, 0, 0, 7] <-- []
+    """
+    #creates copy without 0
+    copy = [0, 0, 0, 0]
+    counter = 0
+    for i in lst:
+        if i != 0:
+            copy[counter] = i
+            counter += 1
+    
+    for i in copy:
+        if i == 0:
+            copy.remove(i)
+
+    #print(copy[0])
+    if len(copy) == 0:
+        lst = [0, 0, 0, 0]
+    elif len(copy) == 1:
+        lst = [copy[0], 0, 0, 0]
+
+    elif len(copy) ==  2:
+        if def_to_check(copy[0], copy[1]):
+            lst == [copy[0]+copy[1], 0, 0, 0]
+        else:
+            lst == [copy[0], copy[1], 0, 0]
+
+    elif len(copy) == 3:
+        if def_to_check(copy[0], copy[1]):
+            lst = [copy[0] + copy[1], copy[2], 0, 0]
+        elif def_to_check(copy[1], copy[2]):
+            lst = [copy[0], copy[1]+copy[2], 0, 0]
+        else:
+            lst = [copy[0], copy[1], copy[2], 0]
+
+    elif len(copy) == 4:
+        if def_to_check(copy[0], copy[1]) and def_to_check(copy[2], copy[3]):
+            lst = [copy[0] + copy[1], copy[2] + copy[3], 0, 0]
+        elif def_to_check(copy[0], copy[1]):
+            lst = [copy[0] + copy[1], copy[2], copy[3], 0]
+        elif def_to_check(copy[1], copy[2]):
+            lst = [copy[0], copy[1] + copy[2], copy[3], 0]
+        elif def_to_check(copy[2], copy[3]):
+            lst = [copy[0], copy[1], copy[2] + copy[3], 0]
+        else:
+            lst = [0, 0, 0, 0]
+    return lst
+
 def add_up(lst):
     """
     lst -> lst
@@ -62,20 +156,21 @@ def add_up(lst):
     l4 = [0, 0, 0, 0]
     #отримати стовпчики чисел
     for i in range(0, 4):
-        l1[i] = (lst[i][0])
+        l1[i] = lst[i][0]
         l2[i] = lst[i][1]
         l3[i] = lst[i][2]
         l4[i] = lst[i][3]
 
-    lst[0][0] = sum_one_lst(l1)
-    lst[0][1] = sum_one_lst(l2)
-    lst[0][2] = sum_one_lst(l3)
-    lst[0][3] = sum_one_lst(l4)
-    lst[1] = [0,0,0,0]
+    l1 = sum_one_lst(l1)
+    l2 = sum_one_lst(l2)
+    l3 = sum_one_lst(l3)
+    l4 = sum_one_lst(l4)
+    lst[0] = [l1[0], l2[0], l3[0], l4[0]]
+    lst[1] = [l1[1], l2[1], l3[1], l4[1]]
     lst[2] = [0,0,0,0]
     lst[3] = [0,0,0,0]
     
-    return lst 
+    return lst
 
 def add_down(lst):
     return lst
@@ -175,13 +270,14 @@ while game_is_playing:
     x += 1
     if x == 100:
             break
+    output(all_numbers)
     #spawn number
     spawn_number(all_numbers, a)
     #geys move from player
     while not key_get():
         key_get()
     
-    output(all_numbers)
+    
 
     if key_pressed == 'w':
         all_numbers = add_up(all_numbers)
