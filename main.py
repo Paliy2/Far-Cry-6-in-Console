@@ -1,13 +1,45 @@
 import random
 import math
 
-def type_of_number(number, Ulama, Prime, Happy):
-    pass
+def type_of_number(number):
+    """
+    this function returns list of number`s types
+    """
+    type_of_number = []
+    if number in Happy:
+        type_of_number.append('H')
+    if number in Prime:
+        type_of_number.append('P')
+    if number in Ulama:
+        type_of_number.append('U')       
+
     return type_of_number
+
+def def_to_check(a, b):
+    """
+    this function checks if two numbers have any types in common
+    """
+    type_of_a = type_of_number(a)
+    type_of_b = type_of_number(b)
+    common_types = list(set(type_of_a).intersection(type_of_b))
+    if len(common_types) > 0:
+        return True
+    else :
+        return False    
+
+
+
+#complition for taple function                                                          TABLE COMPLITION
+def output(lst):
+    '''
+    Outputs number table to console
+    '''
+    for i in lst:
+        print(i)
 
 def list_digits_of_num(num):
     """
-    this function makes a list of digits of given number
+    this function makes a list of digits of given number                             DIGITS OF NUMBER
     this function is neccesary for generating happy numbers
     """
     num_lenght = int(math.log10(num))+1
@@ -24,7 +56,7 @@ def list_digits_of_num(num):
 
 def generate_happy(max):
     """
-    this function generates list of happy numbers
+    this function generates list of happy numbers                                      HAPPY NUMBERS
     """
     happy = []
     for i in range(1, max):
@@ -48,14 +80,6 @@ def generate_happy(max):
                 checker = 0
     return(happy)
 
-#complition for taple function                                                          TABLE COMPLITION
-def output(lst):
-    '''
-    Outputs number table to console
-    '''
-    for i in lst:
-        print(i)
-        
 def ulan_generator(max):
 #this function generates list of Ulam numbers                                            ULAM NUMBERS
     arr = [1, 2, 3]
@@ -86,16 +110,12 @@ def generate_prime(max):
             prime_list.append(i)
     return(prime_list)
 
-def def_to_check(a, b):
-    return True
-
 def sum_one_lst(lst):
     """
     [0, 3, 5, 2] tipa 0  ^
                       3  |
                       5  |
                       2  |
-
     [0, 3, 5, 2] <-- [8, 2, 0, 0]
     [1, 0, 0, 7] <-- []
     """
@@ -245,7 +265,6 @@ def size_of_table(height, width):
 
 #DATA
 Ulama = ulan_generator(300)
-
 
 Prime = generate_prime(300)
 
