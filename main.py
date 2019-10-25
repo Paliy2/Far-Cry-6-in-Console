@@ -213,34 +213,90 @@ def add_up(lst):
 
 def add_down(lst):
     return lst
-    pass
    
 def add_left(lst):
+    """
+    this function add neighbour numbers that have at least one type in common
+    and shift the result to the left
+    >>> [[1, 0, 1, 0], [7, 1, 1, 0], [7, 0, 1, 0], [0, 7, 1, 0]]
+    [[2, 0, 0, 0], [8, 1, 0, 0], [8, 0, 0, 0], [8, 0, 0, 0]]
+    """
+    lst_reversed = []
+    for i in range(len(lst)):
+        lst_reversed.append(list(reversed(lst[i])))
+
+    add_right(lst_reversed)
+
+    lst_reversed_back = []
+    for i in range(len(lst)):
+        lst_reversed_back.append(list(reversed(lst_reversed[i])))
+    
+    return lst_reversed_back 
+
+def shift_num_right(lst):
+    """
+    this function shifts number right if the folowing number is 0
+    >>> [0, 0, 1, 0]
+    [0, 0, 0, 1]
+    """
+    for i in range(len(lst)):
+        for k in range(3):
+            if lst[i][k] !=0 :
+                while lst[i][k + 1] == 0:
+                    lst[i][k+1] = lst[i][k]
+                    lst[i][k] = 0
     return lst
-    pass
 
 def add_right(lst):
+    """
+    this function add neighbour numbers that have at least one type in common
+    and shift the result to the right
+    >>> [[1, 0, 1, 0], [7, 1, 1, 0], [7, 0, 1, 0], [0, 7, 1, 0]]
+    [[0, 0, 0, 2], [0, 0, 7, 2], [0, 0, 0, 8], [0, 0, 0, 8]]
+    """
+    for i in range(4):
+        lst = shift_num_right(lst)
+    for i in range(4):    
+        if def_to_check(lst[i][2], lst[i][3]):
+            lst[i][3] = lst[i][2] + lst[i][3]
+            lst[i][2] = 0    
+            lst = shift_num_right(lst)
+        
+        if def_to_check(lst[i][1], lst[i][2]):
+            lst[i][2] = lst[i][1] + lst[i][2]
+            lst[i][1] = 0    
+            lst = shift_num_right(lst)    
+        
+        if def_to_check(lst[i][0], lst[i][1]):
+            lst[i][1] = lst[i][0] + lst[i][1]
+            lst[i][0] = 0
+            lst = shift_num_right(lst)
+
     return lst
-    pass
+
             
-def choose_number(ul, pr, hp):
+def choose_number(U, P, H):
     """
     lst, lst, lst -> int
     
     chooses random number from Ulama orr Prime or Happy
     """
+    gen_U = U[0:4]
+    gen_P = P[0:4]
+    gen_H = H[0:4]
+    
     gn = random.randint(1, 3)
     if gn == 1:
-        return(random.choice(ul)) 
+        return(random.choice(gen_U)) 
     elif gn == 2:
-        return(random.choice(pr))
+        return(random.choice(gen_P))
     else:
-        return(random.choice(hp))
+        return(random.choice(gen_H))
 
 def spawn_number(array, max_pos):
     #checks if can spawn in loop and adds 1 number to array
     #index
-    
+
     while True:
         a = random.randint(0, max_pos)
         b = random.randint(0, max_pos)
@@ -311,7 +367,7 @@ while game_is_playing:
     x += 1
     if x == 100:
             break
-    #geys move from player
+    #gets move from player
     while not key_get():
         key_get()
 
