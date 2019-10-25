@@ -29,7 +29,7 @@ def def_to_check(a, b):
 
 
 
-#complition for taple function                                                          TABLE COMPLITION
+#complition for taple function                                                          TABLE COMPLITION(disabled)
 def output(lst):
     '''
     Outputs number table to console
@@ -251,7 +251,7 @@ def key_get():
 # our table
 def size_of_table(height, width):
 
-#this fuction creates table with given height and width                              TABLE SIZE
+#this fuction creates table with given height and width                              TABLE SIZE(disabled)
     
     num_list = []
     
@@ -263,12 +263,15 @@ def size_of_table(height, width):
     return num_list
 
 
+
 #DATA
-Ulama = ulan_generator(300)
+limit_for_num = 999
 
-Prime = generate_prime(300)
+Ulama = ulan_generator(limit_for_num)
 
-Happy = generate_happy(300)
+Prime = generate_prime(limit_for_num)
+
+Happy = generate_happy(limit_for_num)
 #-------------------------------------------------------------------------------------|
 
 #Settings
@@ -304,4 +307,3 @@ while game_is_playing:
     elif key_pressed == 'd':
         all_numbers = add_right(all_numbers)
     #print table    
-    
