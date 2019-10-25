@@ -24,18 +24,37 @@ def def_to_check(a, b):
     common_types = list(set(type_of_a).intersection(type_of_b))
     if len(common_types) > 0:
         return True
+    elif a == 0 or b ==0 :
+        return True
     else :
         return False    
 
 
 
 #complition for taple function                                                          TABLE COMPLITION(disabled)
-def output(lst):
-    '''
-    Outputs number table to console
-    '''
-    for i in lst:
-        print(i)
+def int_to_str(lst):
+    str_list = []
+    for k in range(len(lst)):
+        list_of_line = []
+        for i in range(4):
+            list_of_line.append(str(lst[k][i]))
+        str_list.append(list_of_line)
+
+    return(str_list)    
+
+
+def output(grid):
+    grid = int_to_str(grid)
+    print("\n")
+
+    for i in range(len(grid)):
+        res = "\t\t"
+        for j in range(len(grid[i])):
+            for _ in range(5 - len(grid[i][j])): res += " "
+            res += grid[i][j] + " "
+        print(res)
+        print("\n")
+    return 0
 
 def list_digits_of_num(num):
     """
@@ -221,6 +240,7 @@ def choose_number(ul, pr, hp):
 def spawn_number(array, max_pos):
     #checks if can spawn in loop and adds 1 number to array
     #index
+    
     while True:
         a = random.randint(0, max_pos)
         b = random.randint(0, max_pos)
@@ -286,17 +306,14 @@ game_is_playing = True
 #moves allowed
 x = 0
 while game_is_playing:
+    
+    output(all_numbers)
     x += 1
     if x == 100:
             break
-    output(all_numbers)
-    #spawn number
-    spawn_number(all_numbers, a)
     #geys move from player
     while not key_get():
         key_get()
-    
-    
 
     if key_pressed == 'w':
         all_numbers = add_up(all_numbers)
@@ -306,4 +323,6 @@ while game_is_playing:
         all_numbers = add_left(all_numbers)
     elif key_pressed == 'd':
         all_numbers = add_right(all_numbers)
+    input("continue")
+    spawn_number(all_numbers, a)
     #print table    
