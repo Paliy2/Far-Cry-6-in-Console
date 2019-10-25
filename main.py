@@ -171,23 +171,12 @@ def rotate_table(lst):
     this function rotates table in order to make possible adding up or down                         TABLE ROTATION
     """
     lst = lst[::-1]
-    column1 = []
-    column2 = []
-    column3 = []
-    column4 = []
-    for i in range(len(lst)):
-        column1.append(lst[i][0])
-
-    for i in range(len(lst)):
-        column2.append(lst[i][1]) 
-
-    for i in range(len(lst)):
-        column3.append(lst[i][2]) 
-
-    for i in range(len(lst)):
-        column4.append(lst[i][3])
-
-    rotated_lst = [column1, column2, column3, column4]   
+    rotated_lst = []   
+    for k in range(len(lst)):
+        column = []   
+        for i in range(len(lst)):
+            column.append(lst[i][k])
+        rotated_lst.append(column)    
 
     return rotated_lst
 
