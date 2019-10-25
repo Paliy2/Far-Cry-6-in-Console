@@ -3,7 +3,7 @@ import math
 
 def type_of_number(number):
     """
-    this function returns list of number`s types
+    this function returns list of number`s types                                                   NUMBER TYPE
     """
     type_of_number = []
     if number in Happy:
@@ -17,7 +17,7 @@ def type_of_number(number):
 
 def def_to_check(a, b):
     """
-    this function checks if two numbers have any types in common
+    this function checks if two numbers have any types in common                                   COMMON TYPES
     """
     type_of_a = type_of_number(a)
     type_of_b = type_of_number(b)
@@ -29,36 +29,9 @@ def def_to_check(a, b):
     else :
         return False    
 
-
-
-#complition for taple function                                                          TABLE COMPLITION(disabled)
-def int_to_str(lst):
-    str_list = []
-    for k in range(len(lst)):
-        list_of_line = []
-        for i in range(4):
-            list_of_line.append(str(lst[k][i]))
-        str_list.append(list_of_line)
-
-    return(str_list)    
-
-
-def output(grid):
-    grid = int_to_str(grid)
-    print("\n")
-
-    for i in range(len(grid)):
-        res = "\t\t"
-        for j in range(len(grid[i])):
-            for _ in range(5 - len(grid[i][j])): res += " "
-            res += grid[i][j] + " "
-        print(res)
-        print("\n")
-    return 0
-
 def list_digits_of_num(num):
     """
-    this function makes a list of digits of given number                             DIGITS OF NUMBER
+    this function makes a list of digits of given number                                           DIGITS OF NUMBER
     this function is neccesary for generating happy numbers
     """
     num_lenght = int(math.log10(num))+1
@@ -75,7 +48,7 @@ def list_digits_of_num(num):
 
 def generate_happy(max):
     """
-    this function generates list of happy numbers                                      HAPPY NUMBERS
+    this function generates list of happy numbers                                                  HAPPY NUMBERS
     """
     happy = []
     for i in range(1, max):
@@ -101,7 +74,7 @@ def generate_happy(max):
 
 def ulan_generator(max):
     """
-    this function generates list of Ulam numbers                                            ULAM NUMBERS
+    this function generates list of Ulam numbers                                                ULAM NUMBERS
     """
     arr = [1, 2, 3]
     for i in range(4, max):
@@ -117,7 +90,7 @@ def ulan_generator(max):
 
 def generate_prime(max):
     """
-    this function generates list of prime numbers                                           PRIME NUMBERS
+    this function generates list of prime numbers                                               PRIME NUMBERS
     """ 
     prime_list = [2]
     for i in range(3, max):
@@ -131,29 +104,9 @@ def generate_prime(max):
             prime_list.append(i)
     return(prime_list)
 
-   
-def add_left(lst):
-    """
-    this function add neighbour numbers that have at least one type in common                 ADDING LEFT
-    and shift the result to the left
-    >>> [[1, 0, 1, 0], [7, 1, 1, 0], [7, 0, 1, 0], [0, 7, 1, 0]]
-    [[2, 0, 0, 0], [8, 1, 0, 0], [8, 0, 0, 0], [8, 0, 0, 0]]
-    """
-    lst_reversed = []
-    for i in range(len(lst)):
-        lst_reversed.append(list(reversed(lst[i])))
-
-    add_right(lst_reversed)
-
-    lst_reversed_back = []
-    for i in range(len(lst)):
-        lst_reversed_back.append(list(reversed(lst_reversed[i])))
-    
-    return lst_reversed_back 
-
 def shift_num_right(lst):
     """
-    this function shifts number right if the folowing number is 0                             SHIFTING 
+    this function shifts number right if the folowing number is 0                                    SHIFTING 
     >>> [0, 0, 1, 0]
     [0, 0, 0, 1]
     """
@@ -167,7 +120,7 @@ def shift_num_right(lst):
 
 def add_right(lst):
     """
-    this function add neighbour numbers that have at least one type in common                ADDING RIGHT
+    this function add neighbour numbers that have at least one type in common                        ADDING RIGHT
     and shift the result to the right
     >>> [[1, 0, 1, 0], [7, 1, 1, 0], [7, 0, 1, 0], [0, 7, 1, 0]]
     [[0, 0, 0, 2], [0, 0, 7, 2], [0, 0, 0, 8], [0, 0, 0, 8]]
@@ -191,10 +144,31 @@ def add_right(lst):
             lst = shift_num_right(lst)
 
     return lst
+   
+def add_left(lst):
+    """
+    this function add neighbour numbers that have at least one type in common                      ADDING LEFT
+    and shift the result to the left
+    >>> [[1, 0, 1, 0], [7, 1, 1, 0], [7, 0, 1, 0], [0, 7, 1, 0]]
+    [[2, 0, 0, 0], [8, 1, 0, 0], [8, 0, 0, 0], [8, 0, 0, 0]]
+    """
+    lst_reversed = []
+    for i in range(len(lst)):
+        lst_reversed.append(list(reversed(lst[i])))
+
+    add_right(lst_reversed)
+
+    lst_reversed_back = []
+    for i in range(len(lst)):
+        lst_reversed_back.append(list(reversed(lst_reversed[i])))
+    
+    return lst_reversed_back 
+
+
  
 def rotate_table(lst):
     """
-    this function rotates table in order to make possible adding up or down                 TABLE ROTATION
+    this function rotates table in order to make possible adding up or down                         TABLE ROTATION
     """
     lst = lst[::-1]
     column1 = []
@@ -219,7 +193,7 @@ def rotate_table(lst):
 
 def add_up(lst):
     """
-    this function adds all possible numbers up                                               ADDING UP
+    this function adds all possible numbers up                                                          ADDING UP
     """
     lst = add_right(rotate_table(lst))
     for i in range(3):
@@ -228,7 +202,7 @@ def add_up(lst):
     
 def add_down(lst):
     """
-    this function adds all possible numbers down                                           ADDING DOWN
+    this function adds all possible numbers down                                                       ADDING DOWN
     """
     lst = add_left(rotate_table(lst))
     for i in range(3):
@@ -240,7 +214,7 @@ def choose_number(U, P, H):
     """
     lst, lst, lst -> int
     
-    chooses random number from Ulama orr Prime or Happy                                 CHOSING NUMBER TO SPAWN
+    chooses random number from Ulama orr Prime or Happy                                                CHOSING NUMBER TO SPAWN
     """
     gen_U = U[0:4]
     gen_P = P[0:4]
@@ -256,7 +230,7 @@ def choose_number(U, P, H):
 
 def spawn_number(array, max_pos):
     """
-    checks if can spawn in loop and adds 1 number to array                                     NUMBER SPAWN
+    checks if can spawn in loop and adds 1 number to array                                                NUMBER SPAWN
     index
     """
     while True:
@@ -274,7 +248,7 @@ def spawn_number(array, max_pos):
 
 def key_get():
     """
-    gets key to make a move soon                                                               GETTING KEY
+    gets key to make a move soon                                                                       GETTING KEY
     """
     k = input('make your turn: ')
     k = k.lower()
@@ -291,7 +265,7 @@ def key_get():
 # our table
 def size_of_table(height, width):
 
-#this fuction creates table with given height and width                              TABLE SIZE(disabled)
+#this fuction creates table with given height and width                                                TABLE SIZE
     
     num_list = []
     
@@ -302,7 +276,30 @@ def size_of_table(height, width):
         num_list.append(line)
     return num_list
 
+#complition for table function                                                                        TABLE COMPLITION
+def int_to_str(lst):
+    str_list = []
+    for k in range(len(lst)):
+        list_of_line = []
+        for i in range(4):
+            list_of_line.append(str(lst[k][i]))
+        str_list.append(list_of_line)
 
+    return(str_list)    
+
+
+def output(grid):
+    grid = int_to_str(grid)
+    print("\n")
+
+    for i in range(len(grid)):
+        res = "\t\t"
+        for j in range(len(grid[i])):
+            for _ in range(5 - len(grid[i][j])): res += " "
+            res += grid[i][j] + " "
+        print(res)
+        print("\n")
+    return 0
 
 #DATA
 limit_for_num = 999
@@ -343,6 +340,5 @@ while game_is_playing:
         all_numbers = add_left(all_numbers)
     elif key_pressed == 'd':
         all_numbers = add_right(all_numbers)
-    input("continue")
     spawn_number(all_numbers, a)
     #print table    
