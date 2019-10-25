@@ -353,8 +353,6 @@ Happy = generate_happy(limit_for_num)
 #Settings
 #one of possible moves
 key_pressed = ''
-#'a' is the max position of all_numbers
-a = len(all_numbers[0])-1
 game_is_playing = True
 
 #moves allowed
@@ -362,6 +360,7 @@ x = 0
 
 # initialization of grid
 all_numbers = size_of_table(4,4)
+a = len(all_numbers[0])-1
 spawn_number(all_numbers, a)
 spawn_number(all_numbers, a)
 #init finished 
