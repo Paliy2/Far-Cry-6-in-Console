@@ -100,7 +100,9 @@ def generate_happy(max):
     return(happy)
 
 def ulan_generator(max):
-#this function generates list of Ulam numbers                                            ULAM NUMBERS
+    """
+    this function generates list of Ulam numbers                                            ULAM NUMBERS
+    """
     arr = [1, 2, 3]
     for i in range(4, max):
         sum_counter = 0
@@ -114,9 +116,9 @@ def ulan_generator(max):
     return arr
 
 def generate_prime(max):
-
-#this function generates list of prime numbers                                           PRIME NUMBERS
-    
+    """
+    this function generates list of prime numbers                                           PRIME NUMBERS
+    """ 
     prime_list = [2]
     for i in range(3, max):
         div_count = 0
@@ -129,94 +131,10 @@ def generate_prime(max):
             prime_list.append(i)
     return(prime_list)
 
-def sum_one_lst(lst):
-    """
-    [0, 3, 5, 2] tipa 0  ^
-                      3  |
-                      5  |
-                      2  |
-    [0, 3, 5, 2] <-- [8, 2, 0, 0]
-    [1, 0, 0, 7] <-- []
-    """
-    #creates copy without 0
-    copy = [0, 0, 0, 0]
-    counter = 0
-    for i in lst:
-        if i != 0:
-            copy[counter] = i
-            counter += 1
-    
-    for i in copy:
-        if i == 0:
-            copy.remove(i)
-
-    #print(copy[0])
-    if len(copy) == 0:
-        lst = [0, 0, 0, 0]
-    elif len(copy) == 1:
-        lst = [copy[0], 0, 0, 0]
-
-    elif len(copy) ==  2:
-        if def_to_check(copy[0], copy[1]):
-            lst == [copy[0]+copy[1], 0, 0, 0]
-        else:
-            lst == [copy[0], copy[1], 0, 0]
-
-    elif len(copy) == 3:
-        if def_to_check(copy[0], copy[1]):
-            lst = [copy[0] + copy[1], copy[2], 0, 0]
-        elif def_to_check(copy[1], copy[2]):
-            lst = [copy[0], copy[1]+copy[2], 0, 0]
-        else:
-            lst = [copy[0], copy[1], copy[2], 0]
-
-    elif len(copy) == 4:
-        if def_to_check(copy[0], copy[1]) and def_to_check(copy[2], copy[3]):
-            lst = [copy[0] + copy[1], copy[2] + copy[3], 0, 0]
-        elif def_to_check(copy[0], copy[1]):
-            lst = [copy[0] + copy[1], copy[2], copy[3], 0]
-        elif def_to_check(copy[1], copy[2]):
-            lst = [copy[0], copy[1] + copy[2], copy[3], 0]
-        elif def_to_check(copy[2], copy[3]):
-            lst = [copy[0], copy[1], copy[2] + copy[3], 0]
-        else:
-            lst = [0, 0, 0, 0]
-    return lst
-
-def add_up(lst):
-    """
-    lst -> lst
-    adds all possible numbers in down-up order
-    """
-    # стовпчики
-    l1 = [0, 0, 0, 0]
-    l2 = [0, 0, 0, 0]
-    l3 = [0, 0, 0, 0]
-    l4 = [0, 0, 0, 0]
-    #отримати стовпчики чисел
-    for i in range(0, 4):
-        l1[i] = lst[i][0]
-        l2[i] = lst[i][1]
-        l3[i] = lst[i][2]
-        l4[i] = lst[i][3]
-
-    l1 = sum_one_lst(l1)
-    l2 = sum_one_lst(l2)
-    l3 = sum_one_lst(l3)
-    l4 = sum_one_lst(l4)
-    lst[0] = [l1[0], l2[0], l3[0], l4[0]]
-    lst[1] = [l1[1], l2[1], l3[1], l4[1]]
-    lst[2] = [0,0,0,0]
-    lst[3] = [0,0,0,0]
-    
-    return lst
-
-def add_down(lst):
-    return lst
    
 def add_left(lst):
     """
-    this function add neighbour numbers that have at least one type in common
+    this function add neighbour numbers that have at least one type in common                 ADDING LEFT
     and shift the result to the left
     >>> [[1, 0, 1, 0], [7, 1, 1, 0], [7, 0, 1, 0], [0, 7, 1, 0]]
     [[2, 0, 0, 0], [8, 1, 0, 0], [8, 0, 0, 0], [8, 0, 0, 0]]
@@ -235,7 +153,7 @@ def add_left(lst):
 
 def shift_num_right(lst):
     """
-    this function shifts number right if the folowing number is 0
+    this function shifts number right if the folowing number is 0                             SHIFTING 
     >>> [0, 0, 1, 0]
     [0, 0, 0, 1]
     """
@@ -249,7 +167,7 @@ def shift_num_right(lst):
 
 def add_right(lst):
     """
-    this function add neighbour numbers that have at least one type in common
+    this function add neighbour numbers that have at least one type in common                ADDING RIGHT
     and shift the result to the right
     >>> [[1, 0, 1, 0], [7, 1, 1, 0], [7, 0, 1, 0], [0, 7, 1, 0]]
     [[0, 0, 0, 2], [0, 0, 7, 2], [0, 0, 0, 8], [0, 0, 0, 8]]
@@ -273,13 +191,56 @@ def add_right(lst):
             lst = shift_num_right(lst)
 
     return lst
+ 
+def rotate_table(lst):
+    """
+    this function rotates table in order to make possible adding up or down                 TABLE ROTATION
+    """
+    lst = lst[::-1]
+    column1 = []
+    column2 = []
+    column3 = []
+    column4 = []
+    for i in range(len(lst)):
+        column1.append(lst[i][0])
+
+    for i in range(len(lst)):
+        column2.append(lst[i][1]) 
+
+    for i in range(len(lst)):
+        column3.append(lst[i][2]) 
+
+    for i in range(len(lst)):
+        column4.append(lst[i][3])
+
+    rotated_lst = [column1, column2, column3, column4]   
+
+    return rotated_lst
+
+def add_up(lst):
+    """
+    this function adds all possible numbers up                                               ADDING UP
+    """
+    lst = add_right(rotate_table(lst))
+    for i in range(3):
+        lst = rotate_table(lst)
+    return lst
+    
+def add_down(lst):
+    """
+    this function adds all possible numbers down                                           ADDING DOWN
+    """
+    lst = add_left(rotate_table(lst))
+    for i in range(3):
+        lst = rotate_table(lst)
+    return lst        
 
             
 def choose_number(U, P, H):
     """
     lst, lst, lst -> int
     
-    chooses random number from Ulama orr Prime or Happy
+    chooses random number from Ulama orr Prime or Happy                                 CHOSING NUMBER TO SPAWN
     """
     gen_U = U[0:4]
     gen_P = P[0:4]
@@ -294,9 +255,10 @@ def choose_number(U, P, H):
         return(random.choice(gen_H))
 
 def spawn_number(array, max_pos):
-    #checks if can spawn in loop and adds 1 number to array
-    #index
-
+    """
+    checks if can spawn in loop and adds 1 number to array                                     NUMBER SPAWN
+    index
+    """
     while True:
         a = random.randint(0, max_pos)
         b = random.randint(0, max_pos)
@@ -311,7 +273,9 @@ def spawn_number(array, max_pos):
             
 
 def key_get():
-    #gets key to make a move soon
+    """
+    gets key to make a move soon                                                               GETTING KEY
+    """
     k = input('make your turn: ')
     k = k.lower()
     sett = ['w', 's', 'd', 'a']
@@ -351,20 +315,16 @@ Happy = generate_happy(limit_for_num)
 #-------------------------------------------------------------------------------------|
 
 #Settings
+#generates table
+all_numbers = size_of_table(4,4)
 #one of possible moves
 key_pressed = ''
+#'a' is the max position of all_numbers
+a = len(all_numbers[0])-1
 game_is_playing = True
 
 #moves allowed
 x = 0
-
-# initialization of grid
-all_numbers = size_of_table(4,4)
-a = len(all_numbers[0])-1
-spawn_number(all_numbers, a)
-spawn_number(all_numbers, a)
-#init finished 
-
 while game_is_playing:
     
     output(all_numbers)
