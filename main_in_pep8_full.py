@@ -303,18 +303,32 @@ def int_to_str(lst, U, P, H):
             # \33[32m - grenn \33[33m - yellow \33[34m -blue
             # gets the color of number. If no such color 
             # than this number = 0 
-            for u in U:
-                if lst[k][i] == u:
-                    color = '\33[32m'
-                    is_uph = True
-            for p in P:
-                if lst[k][i] == p:
-                    color = '\33[33m'
-                    is_uph = True
-            for h in H:
-                if lst[k][i] == h:
-                    color = '\33[34m'
-                    is_uph = True
+            if lst[k][i] in U and lst[k][i] in P:
+                color = '\33[31m'
+                is_uph = True
+            
+            elif lst[k][i] in U and lst[k][i] in H:
+                color = '\33[36m'
+                is_uph = True
+            
+            elif lst[k][i] in H and lst[k][i] in P:
+                color = '\33[35m'
+                is_uph = True
+
+            elif lst[k][i] in U:   
+                color = '\33[32m'
+                is_uph = True
+            elif lst[k][i] in P:
+                color = '\33[33m'
+                is_uph = True
+            elif lst[k][i] in H:
+                color = '\33[34m'
+                is_uph = True
+            
+            if lst[k][i] in U and lst[k][i] in P and lst[k][i] in H:
+                color = '\33[30m'#black
+                is_uph = True
+            
             # IMPORTANT!
             if not is_uph:
                 # gen score and delete wrong numbers
