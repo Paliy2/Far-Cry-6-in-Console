@@ -2,6 +2,17 @@ import random
 import math
 
 
+def possible_numbers(U, P, H):
+    set_of_alltypes = set(U + H + P)
+    set_of_alltypes = list(set_of_alltypes)
+    set_of_alltypes.sort()
+    print('All numbers that is Ulama or Prime or Happy: \n')
+    x = 0
+    while x + 20 < len(set_of_alltypes):
+        print(set_of_alltypes[x:x+15])
+        x += 15
+        
+        
 def type_of_number(number):
     """
     this function returns list of number`s type
