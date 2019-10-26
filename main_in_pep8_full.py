@@ -2,6 +2,17 @@ import random
 import math
 
 
+class bcolors:
+    # calls like bcolor.RED + 'text'
+    BLACK = '\033[40m'
+    GREY = '\033[100m'
+    RED = '\033[41m'
+    GREEN = '\033[42m'
+    CYNK = '\033[44m'
+    BLUE = '\033[46m'
+    ROSE = '\033[45m'
+
+
 def type_of_number(number):
     """
     this function returns list of number`s type
@@ -250,7 +261,7 @@ def key_get():
     """
     gets key to make a move soon
     """
-    k = input('make your turn: ')
+    k = input('\33[35m' + 'make your turn: ' + '\033[0m')
     k = k.lower()
     sett = ['w', 's', 'd', 'a']
     for i in sett:
@@ -277,25 +288,60 @@ def size_of_table(height, width):
     return num_list
 
 
-def int_to_str(lst):
+def int_to_str(lst, U, P, H):
     '''
     complition for table function
     '''
     str_list = []
+    
     for k in range(len(lst)):
         list_of_line = []
         for i in range(4):
-            list_of_line.append(str(lst[k][i]))
+            color = ''
+            is_uph = False
+
+            # \33[32m - grenn \33[33m - yellow \33[34m -blue
+            # gets the color of number. If no such color 
+            # than this number = 0 
+            for u in U:
+                if lst[k][i] == u:
+                    color = '\33[32m'
+                    is_uph = True
+            for p in P:
+                if lst[k][i] == p:
+                    color = '\33[33m'
+                    is_uph = True
+            for h in H:
+                if lst[k][i] == h:
+                    color = '\33[34m'
+                    is_uph = True
+            # IMPORTANT!
+            if not is_uph:
+                # gen score and delete wrong numbers
+                global score
+                score += lst[k][i]
+                global all_numbers
+                all_numbers[k][i] = 0 
+
+            list_of_line.append(color + str(lst[k][i]) + '\033[0m')
+            
         str_list.append(list_of_line)
 
     return(str_list)
+
+
+def show_score(score):
+    score = str(score)
+    score = score.upper()
+    print('\nSCORE: ')
+    print(score)
 
 
 def output(grid):
     '''
     outputs table 4x4 into screen
     '''
-    grid = int_to_str(grid)
+    grid = int_to_str(grid, Ulama, Prime, Happy)
     print("\n")
 
     for i in range(len(grid)):
@@ -313,13 +359,14 @@ def output(grid):
 if __name__ == '__main__':
     # DATA
     limit_for_num = 999
-
+    
     Ulama = ulan_generator(limit_for_num)
     Prime = generate_prime(limit_for_num)
     Happy = generate_happy(limit_for_num)
     # -----------------------------------------------------------------|
 
     # Settings
+    score = 0
     # one of possible moves
     key_pressed = ''
     x = 0
@@ -335,6 +382,7 @@ if __name__ == '__main__':
     while game_is_playing:
         # show table of numbers
         output(all_numbers)
+        show_score(score)
         # gets move from player
         while not key_get():
             x += 1
