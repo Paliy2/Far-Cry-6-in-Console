@@ -11,7 +11,7 @@ def possible_numbers(U, P, H):
     while x + 20 < len(set_of_alltypes):
         print(set_of_alltypes[x:x+15])
         x += 15
-        
+
         
 def type_of_number(number):
     """
@@ -144,10 +144,13 @@ def add_right(lst):
     >>> [[1, 0, 1, 0], [7, 1, 1, 0], [7, 0, 1, 0], [0, 7, 1, 0]]
     [[0, 0, 0, 2], [0, 0, 7, 2], [0, 0, 0, 8], [0, 0, 0, 8]]
     """
+    #shifts to right sde
     for i in range(4):
         lst = shift_num_right(lst)
+
     for i in range(4):
         if def_to_check(lst[i][2], lst[i][3]):
+
             lst[i][3] = lst[i][2] + lst[i][3]
             lst[i][2] = 0
             lst = shift_num_right(lst)
@@ -297,7 +300,7 @@ def int_to_str(lst, U, P, H):
     for k in range(len(lst)):
         list_of_line = []
         for i in range(4):
-            color = ''
+            color = '\033[0m'
             is_uph = False
 
             # \33[32m - grenn \33[33m - yellow \33[34m -blue
@@ -337,7 +340,10 @@ def int_to_str(lst, U, P, H):
                 global all_numbers
                 all_numbers[k][i] = 0 
 
-            list_of_line.append(color + str(lst[k][i]) + '\033[0m')
+            if color == '\033[0m':
+                list_of_line.append(color + str(lst[k][i]) + '\033[0m' + ' ')
+            else:
+                list_of_line.append(color + str(lst[k][i]) + '\033[0m' + ' ')
             
         str_list.append(list_of_line)
 
@@ -360,10 +366,12 @@ def output(grid):
 
     for i in range(len(grid)):
         res = "\t\t"
+        # for j in 4
         for j in range(len(grid[i])):
-            for _ in range(5 - len(grid[i][j])):
+            for x in range(17 - len(grid[i][j])):
                 res += " "
             res += grid[i][j] + " "
+            
         print(res)
         print("\n")
     return 0
@@ -380,6 +388,14 @@ if __name__ == '__main__':
     # -----------------------------------------------------------------|
 
     # Settings
+    #global variables: 
+    global opened_ulam
+    opened_ulam =[]
+    global opened_happy
+    opened_happy =[]
+    global opened_prime
+    opened_prime = []
+    #--------------------
     score = 0
     # one of possible moves
     key_pressed = ''
@@ -391,7 +407,6 @@ if __name__ == '__main__':
     spawn_number(all_numbers, a)
     spawn_number(all_numbers, a)
     # initialization finished
-
     # main loop of the program
     while game_is_playing:
         # show table of numbers
