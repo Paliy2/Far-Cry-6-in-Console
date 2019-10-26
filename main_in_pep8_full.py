@@ -2,17 +2,6 @@ import random
 import math
 
 
-class bcolors:
-    # calls like bcolor.RED + 'text'
-    BLACK = '\033[40m'
-    GREY = '\033[100m'
-    RED = '\033[41m'
-    GREEN = '\033[42m'
-    CYNK = '\033[44m'
-    BLUE = '\033[46m'
-    ROSE = '\033[45m'
-
-
 def type_of_number(number):
     """
     this function returns list of number`s type
