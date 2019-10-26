@@ -307,43 +307,53 @@ def output(grid):
         print(res)
         print("\n")
     return 0
+ 
 
-# DATA
-limit_for_num = 999
+# launch program
+if __name__ == '__main__':
+    # DATA
+    limit_for_num = 999
 
-Ulama = ulan_generator(limit_for_num)
+    Ulama = ulan_generator(limit_for_num)
+    Prime = generate_prime(limit_for_num)
+    Happy = generate_happy(limit_for_num)
+    # -----------------------------------------------------------------|
 
-Prime = generate_prime(limit_for_num)
-
-Happy = generate_happy(limit_for_num)
-# -----------------------------------------------------------------|
-
-# Settings
-# generates table
-all_numbers = size_of_table(4, 4)
-# one of possible moves
-key_pressed = ''
-# 'a' is the max position of all_numbers
-a = len(all_numbers[0])-1
-game_is_playing = True
-
-# moves allowed
-x = 0
-while game_is_playing:
-    output(all_numbers)
-    x += 1
-    if x == 100:
-            break
-    # gets move from player
-    while not key_get():
-        key_get()
-
-    if key_pressed == 'w':
-        all_numbers = add_up(all_numbers)
-    elif key_pressed == 's':
-        all_numbers = add_down(all_numbers)
-    elif key_pressed == 'a':
-        all_numbers = add_left(all_numbers)
-    elif key_pressed == 'd':
-        all_numbers = add_right(all_numbers)
+    # Settings
+    # one of possible moves
+    key_pressed = ''
+    x = 0
+    # initialization of game
+    game_is_playing = True
+    all_numbers = size_of_table(4, 4)
+    a = len(all_numbers[0])-1
     spawn_number(all_numbers, a)
+    spawn_number(all_numbers, a)
+    # initialization finished
+
+    # main loop of the program
+    while game_is_playing:
+        # show table of numbers
+        output(all_numbers)
+        # gets move from player
+        while not key_get():
+            x += 1
+            key_get()
+            # if cant make a move: break
+            if x > 100:
+                print('You lost, try again :(')
+                break
+
+        
+        # making game physics - add to side
+        if key_pressed == 'w':
+            all_numbers = add_up(all_numbers)
+        elif key_pressed == 's':
+            all_numbers = add_down(all_numbers)
+        elif key_pressed == 'a':
+            all_numbers = add_left(all_numbers)
+        elif key_pressed == 'd':
+            all_numbers = add_right(all_numbers)
+        
+        #generate new number
+        spawn_number(all_numbers, a)
