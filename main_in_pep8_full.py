@@ -3,16 +3,18 @@
 import random
 import math
 import os
-print(os.name)
 
-if os.name == 'nt':
-    systema = 'cls'
-elif os.name == 'posix':
-    systema = 'clear'
-else:
-    systema = 'clear'
+# getting system infornation
+if __name__ == '__main__'
+    if os.name == 'nt':
+        systema = 'cls'
+    elif os.name == 'posix':
+        systema = 'clear'
+    else:
+        systema = '\33c'
 
 
+# Animation at start 
 def downloading(systema):
     '''
     fun function to make short animation 
@@ -30,14 +32,16 @@ def downloading(systema):
     os.system(systema)
     print('Initialization   /')
     os.system(systema)
-    print('Initialization   â')
+    print('Initialization   0')
     os.system(systema)
-    print('Initialization   â')
-   
+    print('Initialization   0')
 
+
+# all numbrs that is Ulama Prime Happy
 def possible_numbers(U, P, H):
     '''
-    
+    all numbers that can be used in game
+    no return needed
     '''
     set_of_alltypes = set(U + H + P)
     set_of_alltypes = list(set_of_alltypes)
@@ -49,9 +53,11 @@ def possible_numbers(U, P, H):
         x += 15
 
 
+# gets all types U P H of number
 def type_of_number(number):
     """
-    this function returns list of number`s type
+    this function returns list of number`s type -s
+
     """
 
     type_of_number = []
@@ -65,6 +71,7 @@ def type_of_number(number):
     return type_of_number
 
 
+# if 2 numbers have the same type
 def def_to_check(a, b):
     """
     this function checks if two numbers have any types in common
@@ -83,6 +90,7 @@ def def_to_check(a, b):
         return False
 
 
+# made for generate_happy
 def list_digits_of_num(num):
     """
     this function makes a list of digits of given number
@@ -105,6 +113,7 @@ def list_digits_of_num(num):
         return digits_of_num
 
 
+#quite clear name
 def generate_happy(max):
     """
     this function generates list of happy numbers
@@ -280,7 +289,9 @@ def add_down(lst):
     return lst
 
 
+# chooses random number U P or H
 def choose_number(U, P, H):
+
     """
     lst, lst, lst -> int
 
@@ -298,6 +309,7 @@ def choose_number(U, P, H):
         return random.choice(gen_P)
     else:
         return random.choice(gen_H)
+
 
 def check_for_zeros(lst):
     zeros_in_lines = []
@@ -336,6 +348,8 @@ def spawn_number(array, max_pos):
         if sum(check_for_zeros(array)) == 0:
             spawner = False
 
+
+# gets move-input from player
 def key_get():
     """
     gets key to make a move soon
@@ -355,7 +369,6 @@ def key_get():
 
 
 # our table
-
 def size_of_table(height, width):
     '''
     this fuction creates table with given height and width
@@ -370,14 +383,12 @@ def size_of_table(height, width):
     return num_list
 
 
-def int_to_str(
-    lst,
-    U,
-    P,
-    H,
-    ):
+# many shit here
+def int_to_str(lst, U, P, H):
     '''
     complition for table function
+    also this func colorizes types U P or H 
+    IF number is UPH it's a bonus number
     '''
 
     str_list = []
@@ -412,14 +423,15 @@ def int_to_str(
             if lst[k][i] in U and lst[k][i] in P and lst[k][i] in H:
                 color = '\33[0;30;46m'  # CYAN BACKGROUND AND BLACK FORE
 
-            list_of_line.append(color + str(lst[k][i]) + '\033[0m' + ' '
-                                 * (8 - rm_space))
+            list_of_line.append(color + str(lst[k][i]) + '\033[0m'
+                                            + ' '* (8 - rm_space))
 
         str_list.append(list_of_line)
 
     return str_list
 
 
+# prints score into terminal
 def show_score(score):
     score_to_print = str(score)
     score_to_print = score_to_print.upper()
@@ -427,6 +439,7 @@ def show_score(score):
     print(score_to_print)
 
 
+# shows our current table
 def output(grid):
     '''
     outputs table 4x4 into screen
@@ -450,17 +463,27 @@ def output(grid):
     return 0
 
 
+# pre for showing awailable colors in terminal
 def colour_description():
     print('Number types:\33[31m RED\33[0m - Ulam,\33[32m GREEN\33[0m - Prime,\33[34m BLUE\33[0m - Happy')
     print('Combinations of types:\33[1;33m YELLOW\33[0m - U and P,\33[1;35m MAGENTA\33[0m - U and H,\33[1;36m CYAN\33[0m -H and P,\33[0;30;46mCYANbg\33[0m - U, P and H')
 
+
+# checks for unavailable moves
 def check_for_lose(lst):
+    '''
+    uses func check_for_zero to get information
+    about cuurent table and all '0' there
+
+    returns True when lost
+    '''
     if sum(check_for_zeros(lst)) == 0:
         return True
 
-# launch program
 
+# launch program
 if __name__ == '__main__':
+    #initialization   
     x = 0
     while x < 20:
         x += 1
@@ -470,7 +493,7 @@ if __name__ == '__main__':
 
     # DATA
 
-    limit_for_num = 999
+    limit_for_num = 3000
 
     Ulama = ulan_generator(limit_for_num)
     Prime = generate_prime(limit_for_num)
@@ -490,14 +513,10 @@ if __name__ == '__main__':
     global score
     score = 0
 
-    # --------------------
-
     # one of possible moves
-
     key_pressed = ''
 
-    # initialization of game
-
+    # swift initialization of game
     game_is_playing = True
     all_numbers = size_of_table(4, 4)
     a = len(all_numbers[0]) - 1
@@ -505,6 +524,8 @@ if __name__ == '__main__':
     spawn_number(all_numbers, a)
 
     # initialization finished
+
+    # intro
     os.system(systema)
     print('Initialization finished')
     input('Press any key to cintinue... ')
@@ -538,13 +559,11 @@ if __name__ == '__main__':
     input("  Yes, I'm in (press 'yes' \n  No, I'm in (press any key) ")
 
     # main loop of the program
-
     while game_is_playing:
-
 
         # show table of numbers
         output(all_numbers)
-        
+        # check if there is any 0 to contionue
         if check_for_lose(all_numbers):
             print('Evil wins, you are loser')
             break
@@ -561,24 +580,19 @@ if __name__ == '__main__':
         print('\33[34mList of Happy numbers, you have opened:' \
             + str(sorted(opened_happy)))
 
-        # show score
-
+        # showing score in terminal
         show_score(score)
 
         # gets move from player
-
         x = 0
         while not key_get():
             x += 1
             key_get()
 
-            # if cant make a move: break
-
+            # if player is uneble to make a move: break
             if x > 10:
                 print('You lost, try again :(')
                 break
-
-        print('game is going ... ')
 
         # making game physics - add to side
 
@@ -592,7 +606,10 @@ if __name__ == '__main__':
             all_numbers = add_right(all_numbers)
 
         # generate new numbers
+        spawn_number(all_numbers, a)
+        spawn_number(all_numbers, a)
 
-        spawn_number(all_numbers, a)
-        spawn_number(all_numbers, a)
+        # clear terminal - not macos well-supported 
         os.system(systema)
+
+print('game was hard, dont worry< all will be OK')
