@@ -4,25 +4,34 @@ import random
 import math
 import os
 
-def downloading():
+
+if os.name == 'nt':
+    systema = 'cls'
+elif os.name == 'posix':
+    systema = '\33c'
+else:
+    systema = 'clear'
+
+
+def downloading(systema):
     '''
     fun function to make short animation 
     '''
-    os.system('clear')
+    os.system(systema)
     print('Initialization   \\')
-    os.system('clear')
+    os.system(systema)
     print('Initialization   \\')
-    os.system('claer')
+    os.system(systema)
     print('Initialization   |')
-    os.system('clear')
+    os.system(systema)
     print('Initialization   |')
-    os.system('clear')
+    os.system(systema)
     print('Initialization   /')
-    os.system('clear')
+    os.system(systema)
     print('Initialization   /')
-    os.system('clear')
+    os.system(systema)
     print('Initialization   —')
-    os.system('clear')
+    os.system(systema)
     print('Initialization   —')
    
 
@@ -194,16 +203,18 @@ def add_right(lst):
             if def_to_check(lst[i][2 - j], lst[i][3 - j]):
                 lst[i][3 - j] = lst[i][2 - j] + lst[i][3 - j]
                 global score
-                score = score + lst[i][3 - j]
                 if lst[i][3 - j] in Happy and lst[i][3 - j] \
                     not in opened_happy:
                     opened_happy.append(lst[i][3 - j])
+                    score = score + lst[i][3 - j]
                 if lst[i][3 - j] in Prime and lst[i][3 - j] \
                     not in opened_prime:
                     opened_prime.append(lst[i][3 - j])
+                    score = score + lst[i][3 - j]
                 if lst[i][3 - j] in Ulama and lst[i][3 - j] \
                     not in opened_ulam:
                     opened_ulam.append(lst[i][3 - j])
+                    score = score + lst[i][3 - j]
                 lst[i][2 - j] = 0
                 for k in range(2):
                     lst = shift_num_right(lst)
@@ -454,7 +465,7 @@ if __name__ == '__main__':
     while x < 20:
         x += 1
         #print('Initialization... ')
-        downloading()
+        downloading(systema)
 
 
     # DATA
@@ -494,16 +505,16 @@ if __name__ == '__main__':
     spawn_number(all_numbers, a)
 
     # initialization finished
-    os.system('clear')
+    os.system('cls')
     print('Initialization finished')
     input('Press any key to cintinue... ')
     print('Now you are ready to start')
     input()
-    os.system('clear')
+    os.system('cls')
     print()
     print("in old days... ")
     input()
-    os.system('clear')
+    os.system('cls')
     print('\n\t\t\n')
     print("old \33[30mblack mage\33[0m cursed the world")
     input()
@@ -569,10 +580,4 @@ if __name__ == '__main__':
 
         spawn_number(all_numbers, a)
         spawn_number(all_numbers, a)
-
-        if os.name == 'nt':
-            os.system('clear')
-        elif os.name == 'posix':
-            print('\33c')
-        else:
-            os.system('clear')
+        os.system('cls')
