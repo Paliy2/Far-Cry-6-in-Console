@@ -8,21 +8,21 @@ def downloading():
     '''
     fun function to make short animation 
     '''
-    os.system('cls')
+    os.system('clear')
     print('Initialization   \\')
-    os.system('cls')
+    os.system('clear')
     print('Initialization   \\')
-    os.system('cls')
+    os.system('claer')
     print('Initialization   |')
-    os.system('cls')
+    os.system('clear')
     print('Initialization   |')
-    os.system('cls')
+    os.system('clear')
     print('Initialization   /')
-    os.system('cls')
+    os.system('clear')
     print('Initialization   /')
-    os.system('cls')
+    os.system('clear')
     print('Initialization   —')
-    os.system('cls')
+    os.system('clear')
     print('Initialization   —')
    
 
@@ -288,14 +288,24 @@ def choose_number(U, P, H):
     else:
         return random.choice(gen_H)
 
+def check_for_zeros(lst):
+    zeros_in_lines = []
+    for i in range(len(lst)):
+        count = 0
+        for k in range(len(lst[i])):
+            if lst[i][k] == 0:
+                count += 1
+        zeros_in_lines.append(count)
+    return zeros_in_lines
+
 
 def spawn_number(array, max_pos):
     """
     checks if can spawn in loop and adds 1 number to array
     index
     """
-
-    while True:
+    spawner = True
+    while spawner:
         a = random.randint(0, max_pos)
         b = random.randint(0, max_pos)
 
@@ -312,7 +322,8 @@ def spawn_number(array, max_pos):
             if array[a][b] in Ulama and array[a][b] not in opened_ulam:
                 opened_ulam.append(array[a][b])
             return array
-
+        if sum(check_for_zeros(array)) == 0:
+            spawner = False
 
 def key_get():
     """
@@ -432,6 +443,9 @@ def colour_description():
     print('Number types:\33[31m RED\33[0m - Ulam,\33[32m GREEN\33[0m - Prime,\33[34m BLUE\33[0m - Happy')
     print('Combinations of types:\33[1;33m YELLOW\33[0m - U and P,\33[1;35m MAGENTA\33[0m - U and H,\33[1;36m CYAN\33[0m -H and P,\33[0;30;46mCYANbg\33[0m - U, P and H')
 
+def check_for_lose(lst):
+    if sum(check_for_zeros(lst)) == 0:
+        return True
 
 # launch program
 
@@ -480,16 +494,16 @@ if __name__ == '__main__':
     spawn_number(all_numbers, a)
 
     # initialization finished
-    os.system('cls')
+    os.system('clear')
     print('Initialization finished')
     input('Press any key to cintinue... ')
     print('Now you are ready to start')
     input()
-    os.system('cls')
+    os.system('clear')
     print()
     print("in old days... ")
     input()
-    os.system('cls')
+    os.system('clear')
     print('\n\t\t\n')
     print("old \33[30mblack mage\33[0m cursed the world")
     input()
@@ -501,14 +515,15 @@ if __name__ == '__main__':
 
     while game_is_playing:
 
-        # show colour description
 
         # show table of numbers
-
         output(all_numbers)
+        
+        if check_for_lose(all_numbers):
+            print('Evil wins, you are loser')
+            break
 
         # show colour description
-
         colour_description()
 
         # show list of opened numbers
@@ -541,7 +556,6 @@ if __name__ == '__main__':
 
         # making game physics - add to side
 
-        copy_all_numbers = all_numbers
         if key_pressed == 'w':
             all_numbers = add_up(all_numbers)
         elif key_pressed == 's':
@@ -556,14 +570,9 @@ if __name__ == '__main__':
         spawn_number(all_numbers, a)
         spawn_number(all_numbers, a)
 
-        if copy_all_numbers == all_numbers:
-            print('You have lost')
-            print('try again or call on \33[31mhot line +89090---\33[0m')
-            break
-
         if os.name == 'nt':
-            os.system('cls')
-        elif os.name == posix:
+            os.system('clear')
+        elif os.name == 'posix':
             print('\33c')
         else:
             os.system('clear')
