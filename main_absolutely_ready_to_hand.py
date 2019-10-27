@@ -1,5 +1,6 @@
 import random
 import math
+import os
 
 def possible_numbers(U, P, H):
     set_of_alltypes = set(U + H + P)
@@ -430,3 +431,4 @@ if __name__ == '__main__':
         #generate new numbers
         spawn_number(all_numbers, a)
         spawn_number(all_numbers, a)
+        os.system('clear')
