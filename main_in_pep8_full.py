@@ -3,12 +3,12 @@
 import random
 import math
 import os
-
+print(os.name)
 
 if os.name == 'nt':
     systema = 'cls'
 elif os.name == 'posix':
-    systema = '\33c'
+    systema = 'clear'
 else:
     systema = 'clear'
 
@@ -30,9 +30,9 @@ def downloading(systema):
     os.system(systema)
     print('Initialization   /')
     os.system(systema)
-    print('Initialization   —')
+    print('Initialization   â')
     os.system(systema)
-    print('Initialization   —')
+    print('Initialization   â')
    
 
 def possible_numbers(U, P, H):
@@ -505,22 +505,37 @@ if __name__ == '__main__':
     spawn_number(all_numbers, a)
 
     # initialization finished
-    os.system('cls')
+    os.system(systema)
     print('Initialization finished')
     input('Press any key to cintinue... ')
     print('Now you are ready to start')
     input()
-    os.system('cls')
+    os.system(systema)
     print()
     print("in old days... ")
     input()
-    os.system('cls')
+    os.system(systema)
     print('\n\t\t\n')
     print("old \33[30mblack mage\33[0m cursed the world")
     input()
     print('And \33[31mNOW\33[0m')
     print('\n\t\33[34mYOU\33[0m must save the world')
     input()
+    os.system(systema)
+    print('''
+    Game rule is very simple if you know what is 
+    Ulama, Prime or Happy numbers.
+
+    Don't you?
+
+    Then try and learn, save \33[34mWORLD\33[37m from dAngEr!!!
+
+
+
+
+    *** The world is corrupted if all fields of numbers are filled =( ***
+    ''')
+    input("  Yes, I'm in (press 'yes' \n  No, I'm in (press any key) ")
 
     # main loop of the program
 
@@ -580,4 +595,4 @@ if __name__ == '__main__':
 
         spawn_number(all_numbers, a)
         spawn_number(all_numbers, a)
-        os.system('cls')
+        os.system(systema)
