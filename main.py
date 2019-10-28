@@ -392,27 +392,30 @@ def int_to_str(lst, U, P, H):
             # gets the color of number. If no such color
             # than this number has none of these three types
 
-            if lst[k][i] in U and lst[k][i] in P:
-                color = '\33[1;33m'  # YELLOW = RED + GREEN
-            elif lst[k][i] in U and lst[k][i] in H:
-
-                color = '\33[1;35m'  # Magenta = RED + BLUE
-            elif lst[k][i] in H and lst[k][i] in P:
-
-                color = '\33[1;36m'  # CYAN = GREEN + BLUE
-            elif lst[k][i] in U:
-
-                color = '\33[31m'  # RED
-            elif lst[k][i] in P:
-
-                color = '\33[32m'  # GREEN
-            elif lst[k][i] in H:
-
-                color = '\33[34m'  # BLUE
 
             if lst[k][i] in U and lst[k][i] in P and lst[k][i] in H:
                 color = '\33[0;30;46m'  # CYAN BACKGROUND AND BLACK FORE
+            
+            elif lst[k][i] in U and lst[k][i] in P:
+                color = '\33[1;33m'  # YELLOW = RED + GREEN
 
+            elif lst[k][i] in U and lst[k][i] in H:
+                color = '\33[1;35m'  # Magenta = RED + BLUE
+
+            elif lst[k][i] in H and lst[k][i] in P:
+                color = '\33[1;36m'  # CYAN = GREEN + BLUE
+
+            elif lst[k][i] in U:
+                color = '\33[31m'  # RED
+
+            elif lst[k][i] in P:
+                color = '\33[32m'  # GREEN
+            elif lst[k][i] in H:
+                color = '\33[34m'  # BLUE
+
+            if gamemod == 1 or gamemod == 2 :
+                color = '\033[0m'
+            
             list_of_line.append(color + str(lst[k][i]) + '\033[0m'
                                             + ' '* (8 - rm_space))
 
@@ -486,7 +489,7 @@ def check_for_lose(lst):
 if __name__ == '__main__':
     #initialization   
     x = 0
-    systema = 'cls'
+    systema = 'cls' if os.name == 'nt' else 'clear'
     while x < 20:
         x += 1
         #print('Initialization... ')
@@ -513,6 +516,8 @@ if __name__ == '__main__':
     opened_prime = []
     global score
     score = 0
+    global gamemod
+    gamemod = 0
     # one of possible moves
     key_pressed = ''
 
@@ -539,6 +544,34 @@ if __name__ == '__main__':
     print('\n\t\t\n')
     print("old \33[30mblack mage\33[0m cursed the world")
     input()
+    os.system(systema)
+    print('''
+                //
+                //
+              _ //
+           .' . // '.
+          '_ '_\/_'  `_
+          .  . \\  .  .
+         .==. ` \\' .'
+  .\|   //bd\\   \,
+  \_'`._\\__//_.'`.;
+    `.__      __,' \\
+        |    |      \\
+        |    |       `
+        |    |
+        |    |
+        |____|
+       =='  '==
+    ''')
+    input()
+    os.system(systema)
+    print('''__________    _____                 .__                 
+\______   \  /  _  \   _______ __ __|  |   ____   ______
+ |    |  _/ /  /_\  \  \_  __ \  |  \  | _/ __ \ /  ___/
+ |    |   \/    |    \  |  | \/  |  /  |_\  ___/ \___ \ 
+ |______  /\____|__  /  |__|  |____/|____/\___  >____  >
+        \/         \/                         \/     \/ ''')
+    input()
     print('And \33[31mNOW\33[0m')
     print('\n\t\33[34mYOU\33[0m must save the world')
     input()
@@ -554,7 +587,6 @@ if __name__ == '__main__':
 
     # main loop of the program
     while game_is_playing:
-        os.system('cls')
         # show table of numbers
         output(all_numbers)
         # check if there is any 0 to contionue
