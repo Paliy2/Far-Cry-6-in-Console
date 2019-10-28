@@ -5,7 +5,7 @@ import math
 import os
 
 # getting system infornation
-if __name__ == '__main__'
+if __name__ == '__main__':
     if os.name == 'nt':
         systema = 'cls'
     elif os.name == 'posix':
@@ -528,7 +528,7 @@ if __name__ == '__main__':
     # intro
     os.system(systema)
     print('Initialization finished')
-    input('Press any key to cintinue... ')
+    input('Press any key to continue... ')
     print('Now you are ready to start')
     input()
     os.system(systema)
