@@ -8,6 +8,11 @@ import random
 
 # task to reach next level
 def next_level(U, P, H):
+    '''
+    chooses number from Ulama, Happy, Prime set 
+    to rich it and go to next level
+    # if 3 numbers is got then player wins
+    '''
     typ = random.choice(['Ulam', 'Happy', 'Prime'])
     print('To chase black wizard you need to find ' + typ + ': ', end = '')
     
