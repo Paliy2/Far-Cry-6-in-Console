@@ -6,6 +6,22 @@ import math
 import random
 
 
+# task to reach next level
+def next_level(U, P, H):
+    typ = random.choice(['Ulam', 'Happy', 'Prime'])
+    print('To chase black wizard you need to find ' + typ + ': ', end = '')
+    
+    if typ == 'Ulam':
+        number_to_find = random.choice(U[50:-1])
+    elif typ == 'Prime':
+        number_to_find = random.choice(P[50:-1])
+    elif typ == 'Happy': 
+        number_to_find = random.choice(H[50:-1])
+    print(str(number_to_find))
+    
+    return number_to_find, typ
+
+
 # Animation at start 
 def downloading(systema):
     '''
@@ -453,6 +469,9 @@ def output(grid):
 
         print(res)
         print('\n')
+    
+    print('\n Goal is to get ' + str(num1))
+
     return 0
 
 
@@ -498,7 +517,7 @@ if __name__ == '__main__':
 
     # DATA
 
-    limit_for_num = 3000
+    limit_for_num = 1200
 
     Ulama = ulan_generator(limit_for_num)
     Prime = generate_prime(limit_for_num)
@@ -585,8 +604,13 @@ if __name__ == '__main__':
     ''')
     input("  Yes, I'm in (press 'yes' \n  No, I'm in (press any key) ")
 
+    
     # main loop of the program
+    num1 = next_level(Ulama, Prime, Happy)
+
     while game_is_playing:
+        
+        
         # show table of numbers
         output(all_numbers)
         # check if there is any 0 to contionue
@@ -608,7 +632,6 @@ if __name__ == '__main__':
 
         # showing score in terminal
         show_score(score)
-
         # gets move from player
         x = 0
         while not key_get():
@@ -619,7 +642,7 @@ if __name__ == '__main__':
             if x > 10:
                 print('You lost, try again :(')
                 break
-
+        
         # making game physics - add to side
 
         if key_pressed == 'w':
@@ -630,6 +653,13 @@ if __name__ == '__main__':
             all_numbers = add_left(all_numbers)
         elif key_pressed == 'd':
             all_numbers = add_right(all_numbers)
+
+        
+        if num1 in opened_happy+opened_prime+opened_ulam:
+            print('Cool!\n You are great!')
+            gamemod += 1
+            num1 = next_level(Ulama, Prime, Happy)
+
 
         # generate new numbers
         spawn_number(all_numbers, a)
