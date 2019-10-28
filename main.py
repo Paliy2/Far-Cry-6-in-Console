@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# plays best on linux 
 
 import os
 import math 
@@ -659,6 +658,10 @@ if __name__ == '__main__':
         if num1 in opened_happy+opened_prime+opened_ulam:
             print('Cool!\n You are great!')
             gamemod += 1
+            if gamemod == 3:
+                print('You are brave soldier')
+                print('Now the world is safe')
+                break
             num1 = next_level(Ulama, Prime, Happy)
 
 
@@ -668,5 +671,22 @@ if __name__ == '__main__':
 
         # clear terminal - not macos well-supported 
         os.system(systema)
+if gamemod != 3:
+    print('game was hard, dont worry< all will be OK')
+else:
+    print('Try again by reloading game or say goodbye to our developers')
+    input('Press any key... ')
 
-print('game was hard, dont worry< all will be OK')
+def tytry():
+    import time 
+
+    os.system(systema)
+    for i in range(35):
+        time.sleep(0.2)
+        os.system(systema)
+        print('\n' * (35-i))
+        print('The best developers ever ')
+        print()
+        print('   Yewgeiniok\n4_20_kizynya\n   Yarik_bachok')
+
+tytry()
