@@ -678,6 +678,12 @@ else:
     input('Press any key... ')
 
 def tytry():
+    '''
+    outputs names of developers on screen
+    Yewgen Domeretskyi
+    Maks Chikita
+    Yarema Fylypchuk
+    '''
     import time 
 
     os.system(systema)
