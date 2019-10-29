@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# best plays on linux
 
 import os
 import math 
@@ -14,6 +13,7 @@ def intro():
     os.system(systema)
     print('Initialization finished')
     input('Press any key to continue... ')
+    os.system(systema)
     for i in range(20):
         time.sleep(0.2)
         os.system(systema)
@@ -66,17 +66,17 @@ ______           _           _                                 _     _
         
         # print(' '*(40-i), end='')
         print(' '*(screen_width - i) 
-+ '__________   _____                 .__\n'               
-+ ' ' * (screen_width-i)
-+ '\______   \ /  _  \  _______ __ __ |  |   ____   ______\n'
-+ ' ' * (screen_width-i)
-+ '|    |  _/ /  /_\  \  \_  __ \  |  \  | _/ __ \ /  ___/\n'
-+ ' ' * (screen_width-i)
-+ '|    |   \/    |    \  |  | \/  |  /  |_\  ___/ \___ \ ' + '\n'
-+ ' ' * (screen_width-i)
-+ '|______  /\____|__  /  |__|  |____/|____/\___  >____  >\n'
-+ ' ' * (screen_width-i)
-+ '       \/         \/                         \/     \/\n')
+        + '__________   _____                 .__\n'               
+        + ' ' * (screen_width-i)
+        + '\______   \ /  _  \  _______ __ __ |  |   ____   ______\n'
+        + ' ' * (screen_width-i)
+        + '|    |  _/ /  /_\  \  \_  __ \  |  \  | _/ __ \ /  ___/\n'
+        + ' ' * (screen_width-i)
+        + '|    |   \/    |    \  |  | \/  |  /  |_\  ___/ \___ \ ' + '\n'
+        + ' ' * (screen_width-i)
+        + '|______  /\____|__  /  |__|  |____/|____/\___  >____  >\n'
+        + ' ' * (screen_width-i)
+        + '       \/         \/                         \/     \/\n')
     input()
     print('And \33[31mNOW\33[0m')
     print('\n\t\33[34mYOU\33[0m must save the world')
@@ -100,8 +100,8 @@ def next_level(U, P, H):
     # if 3 numbers is got then player wins
     '''
     typ = random.choice(['Ulam', 'Happy', 'Prime'])
-    print('To chase black wizard you need to find ' + typ + ': ', end = '')
-    
+    print('To chase black wizard you need to find ' + typ + ': ', end='')
+
     if typ == 'Ulam':
         number_to_find = random.choice(U[50:-1])
     elif typ == 'Prime':
@@ -211,7 +211,7 @@ def list_digits_of_num(num):
         return digits_of_num
 
 
-#quite clear name
+# quite clear name
 def generate_happy(max):
     """
     this function generates list of happy numbers
@@ -310,16 +310,16 @@ def add_right(lst):
             if def_to_check(lst[i][2 - j], lst[i][3 - j]):
                 lst[i][3 - j] = lst[i][2 - j] + lst[i][3 - j]
                 global score
-                if lst[i][3 - j] in Happy and lst[i][3 - j] \
-                    not in opened_happy:
+                if lst[i][3 - j] in Happy 
+                and lst[i][3 - j] not in opened_happy:
                     opened_happy.append(lst[i][3 - j])
                     score = score + lst[i][3 - j]
-                if lst[i][3 - j] in Prime and lst[i][3 - j] \
-                    not in opened_prime:
+                if lst[i][3 - j] in Prime 
+                and lst[i][3 - j] not in opened_prime:
                     opened_prime.append(lst[i][3 - j])
                     score = score + lst[i][3 - j]
-                if lst[i][3 - j] in Ulama and lst[i][3 - j] \
-                    not in opened_ulam:
+                if lst[i][3 - j] in Ulama 
+                and lst[i][3 - j] not in opened_ulam:
                     opened_ulam.append(lst[i][3 - j])
                     score = score + lst[i][3 - j]
                 lst[i][2 - j] = 0
@@ -499,7 +499,6 @@ def int_to_str(lst, U, P, H):
             # gets the color of number. If no such color
             # than this number has none of these three types
 
-
             if lst[k][i] in U and lst[k][i] in P and lst[k][i] in H:
                 color = '\33[0;30;46m'  # CYAN BACKGROUND AND BLACK FORE
             
@@ -520,11 +519,11 @@ def int_to_str(lst, U, P, H):
             elif lst[k][i] in H:
                 color = '\33[34m'  # BLUE
 
-            if gamemod == 1 or gamemod == 2 :
+            if gamemod == 1 or gamemod == 2:
                 color = '\033[0m'
             
             list_of_line.append(color + str(lst[k][i]) + '\033[0m'
-                                            + ' '* (8 - rm_space))
+                                + ' ' * (8 - rm_space))
 
         str_list.append(list_of_line)
 
@@ -602,14 +601,13 @@ def check_for_lose(lst):
 
 # launch program
 if __name__ == '__main__':
-    #initialization   
+    # initialization   
     x = 0
     systema = 'cls' if os.name == 'nt' else 'clear'
     while x < 20:
         x += 1
-        #print('Initialization... ')
+        # print('Initialization... ')
         downloading(systema)
-
 
     # DATA
 
@@ -651,7 +649,6 @@ if __name__ == '__main__':
     goal_number = 500
     while game_is_playing:
         
-        
         # show table of numbers
         output(all_numbers)
 
@@ -668,12 +665,12 @@ if __name__ == '__main__':
         
         # show list of opened numbers
 
-        print('\33[31mList of  Ulam numbers, you have opened:' \
-            + str(sorted(opened_ulam)))
-        print('\33[32mList of Prime numbers, you have opened:' \
-            + str(sorted(opened_prime)))
-        print('\33[34mList of Happy numbers, you have opened:' \
-            + str(sorted(opened_happy)))
+        print('\33[31mList of  Ulam numbers, you have opened:' 
+              + str(sorted(opened_ulam)))
+        print('\33[32mList of Prime numbers, you have opened:' 
+              + str(sorted(opened_prime)))
+        print('\33[34mList of Happy numbers, you have opened:' 
+              + str(sorted(opened_happy)))
 
         # showing score in terminal
         show_score(score)
@@ -688,7 +685,6 @@ if __name__ == '__main__':
                 print('You lost, try again :(')
                 break
 
-        
         # making game physics - add to side
 
         if key_pressed == 'w':
@@ -699,9 +695,6 @@ if __name__ == '__main__':
             all_numbers = add_left(all_numbers)
         elif key_pressed == 'd':
             all_numbers = add_right(all_numbers)
-
-        
-
 
         # generate new numbers
         if gamemod == 2:
@@ -717,6 +710,7 @@ else:
     print('Try again by reloading game or say goodbye to our developers')
     input('Press any key... ')
 
+
 def tytry():
     '''
     outputs names of developers on screen
@@ -727,13 +721,14 @@ def tytry():
     import time 
 
     os.system(systema)
-    for i in range(35):
+    for i in range(25):
         time.sleep(0.2)
         os.system(systema)
-        print('\n' * (35-i))
+        print('\n' * (25-i))
         print('The best developers ever ')
         print()
         print('   Yewgeiniok\n4_20\n   Yarik_bachok')
+
 
 x = 0
 while x < 10:
