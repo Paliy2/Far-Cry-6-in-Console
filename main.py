@@ -537,6 +537,11 @@ def int_to_str(lst, U, P, H):
 
 
 def change_level(all_numbers, number):
+    '''
+    This func changes the game level when the score 
+    500*k is reached
+    if 4th level is passed then player wins
+    '''
         global goal_number
         global gamemod
         for i in range(len(all_numbers)):
@@ -615,7 +620,6 @@ if __name__ == '__main__':
         #print('Initialization... ')
         downloading(systema)
 
-
     # DATA
 
     limit_for_num = 2500
@@ -656,7 +660,6 @@ if __name__ == '__main__':
     goal_number = 500
     while game_is_playing:
         
-        
         # show table of numbers
         output(all_numbers)
 
@@ -693,7 +696,6 @@ if __name__ == '__main__':
                 print('You lost, try again :(')
                 break
 
-        
         # making game physics - add to side
 
         if key_pressed == 'w':
@@ -704,9 +706,6 @@ if __name__ == '__main__':
             all_numbers = add_left(all_numbers)
         elif key_pressed == 'd':
             all_numbers = add_right(all_numbers)
-
-        
-
 
         # generate new numbers
         if gamemod == 2:
@@ -722,6 +721,7 @@ else:
     print('Try again by reloading game or say goodbye to our developers')
     input('Press any key... ')
 
+    
 def tytry():
     '''
     outputs names of developers on screen
