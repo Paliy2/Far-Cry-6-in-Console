@@ -14,6 +14,21 @@ def intro():
     os.system(systema)
     print('Initialization finished')
     input('Press any key to continue... ')
+    for i in range(20):
+        time.sleep(0.2)
+        os.system(systema)
+        print('\n' * (20-i))
+        print('''
+______           _           _                                 _     _                   
+| ___ \         | |         | |                               | |   (_)                  
+| |_/ / ___  ___| |_   _ __ | | __ _ _   _ ___    ___  _ __   | |    _ _ __  _   ___  __ 
+| ___ \/ _ \/ __| __| | '_ \| |/ _` | | | / __|  / _ \| '_ \  | |   | | '_ \| | | \ \/ / 
+| |_/ /  __/\__ \ |_  | |_) | | (_| | |_| \__ \ | (_) | | | | | |___| | | | | |_| |>  <  
+\____/ \___||___/\__| | .__/|_|\__,_|\__, |___/  \___/|_| |_| \_____/_|_| |_|\__,_/_/\_\ 
+                      | |             __/ |                                              
+                      |_|            |___/                                               
+                      ''')
+    input()
     print('Now you are ready to start')
     input()
     os.system(systema)
