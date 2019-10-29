@@ -719,4 +719,7 @@ def tytry():
         print()
         print('   Yewgeiniok\n4_20\n   Yarik_bachok')
 
-tytry()
+x = 0
+while x < 10:
+    tytry()
+    x += 1
