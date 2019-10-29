@@ -7,6 +7,75 @@ import random
 import time 
 
 
+# initialization finished
+def intro():
+    # intro
+    os.system(systema)
+    print('Initialization finished')
+    input('Press any key to continue... ')
+    print('Now you are ready to start')
+    input()
+    os.system(systema)
+    print()
+    print("in old days... ")
+    input()
+    os.system(systema)
+    print('\n\t\t\n')
+    print("old \33[30mblack mage\33[0m cursed the world")
+    input()
+    os.system(systema)
+    print('''
+                //
+                //
+              _ //
+           .' . // '.
+          '_ '_\/_'  `_
+          .  . \\  .  .
+         .==. ` \\' .'
+  .\|   //bd\\   \,
+  \_'`._\\__//_.'`.;
+    `.__      __,' \\
+        |    |      \\
+        |    |       `
+        |    |
+        |    |
+        |____|
+       =='  '==
+    ''')
+    input()
+    screen_width = 79
+    for i in range(screen_width):
+        time.sleep(0.06)
+        os.system(systema)
+        
+        # print(' '*(40-i), end='')
+        print(' '*(screen_width - i) 
++ '__________   _____                 .__\n'               
++ ' ' * (screen_width-i)
++ '\______   \ /  _  \  _______ __ __ |  |   ____   ______\n'
++ ' ' * (screen_width-i)
++ '|    |  _/ /  /_\  \  \_  __ \  |  \  | _/ __ \ /  ___/\n'
++ ' ' * (screen_width-i)
++ '|    |   \/    |    \  |  | \/  |  /  |_\  ___/ \___ \ ' + '\n'
++ ' ' * (screen_width-i)
++ '|______  /\____|__  /  |__|  |____/|____/\___  >____  >\n'
++ ' ' * (screen_width-i)
++ '       \/         \/                         \/     \/\n')
+    input()
+    print('And \33[31mNOW\33[0m')
+    print('\n\t\33[34mYOU\33[0m must save the world')
+    input()
+    os.system(systema)
+    print('''
+    Game rules are very simple if you know what
+    Ulama, Prime or Happy numbers are.
+    Don't you?
+    Then try this game and learn it. Save \33[34mWORLD\33[37m from dAngEr!!!
+    *** The world will corrupt if all fields of numbers are filled =( ***
+    ''')
+    input("  Yes, I'm in (press 'yes' \n  No, I'm in (press any key) ")
+
+
 # task to reach next level
 def next_level(U, P, H):
     '''
@@ -25,7 +94,7 @@ def next_level(U, P, H):
         number_to_find = random.choice(H[50:-1])
     print(str(number_to_find))
     
-    return number_to_find, typ
+    return number_to_find
 
 
 # Animation at start 
@@ -446,6 +515,24 @@ def int_to_str(lst, U, P, H):
     return str_list
 
 
+def change_level(all_numbers, number):
+        global goal_number
+        global gamemod
+        for i in range(len(all_numbers)):
+            for k in range(len(all_numbers[i])):
+                if all_numbers[i][k] >= goal_number:
+                    all_numbers[i][k] = 0 
+                    print('Cool!\n You are great!')
+                    gamemod += 1
+                    goal_number += 500
+                    if gamemod == 3:
+                        print('You are brave soldier')
+                        print('Now the world is safe')
+                        game_is_playing = False
+                    input('Press enter to continue ... ')
+        return all_numbers
+
+
 # prints score into terminal
 def show_score(score):
     score_to_print = str(score)
@@ -475,10 +562,9 @@ def output(grid):
 
         print(res)
         print('\n')
-    
-    print('\n Goal is to get ' + str(num1))
 
-    return 0
+    global goal_number
+    print('\n Goal is to get ' + str(goal_number))
 
 
 # pre for showing awailable colors in terminal
@@ -498,18 +584,6 @@ def check_for_lose(lst):
         return True
 
 
-
-
-# getting system infornation
-#if __name__ == '__main__':
-#    if os.name == 'nt':
-#        systema = 'cls'
-#    elif os.name == 'posix':
-#       systema = 'clear'
-#    else:
-#        systema = '\33c'
-
-
 # launch program
 if __name__ == '__main__':
     #initialization   
@@ -523,7 +597,7 @@ if __name__ == '__main__':
 
     # DATA
 
-    limit_for_num = 1200
+    limit_for_num = 2500
 
     Ulama = ulan_generator(limit_for_num)
     Prime = generate_prime(limit_for_num)
@@ -553,91 +627,29 @@ if __name__ == '__main__':
     spawn_number(all_numbers, a)
     spawn_number(all_numbers, a)
 
-    # initialization finished
-
-    # intro
-    os.system(systema)
-    print('Initialization finished')
-    input('Press any key to continue... ')
-    print('Now you are ready to start')
-    input()
-    os.system(systema)
-    print()
-    print("in old days... ")
-    input()
-    os.system(systema)
-    print('\n\t\t\n')
-    print("old \33[30mblack mage\33[0m cursed the world")
-    input()
-    os.system(systema)
-    print('''
-                //
-                //
-              _ //
-           .' . // '.
-          '_ '_\/_'  `_
-          .  . \\  .  .
-         .==. ` \\' .'
-  .\|   //bd\\   \,
-  \_'`._\\__//_.'`.;
-    `.__      __,' \\
-        |    |      \\
-        |    |       `
-        |    |
-        |    |
-        |____|
-       =='  '==
-    ''')
-    input()
-    screen_width = 79
-    for i in range(screen_width):
-        time.sleep(0.2)
-        os.system(systema)
-        
-        # print(' '*(40-i), end='')
-        print(' '*(screen_width - i) 
-+ '__________   _____                 .__\n'               
-+ ' ' * (screen_width-i)
-+ '\______   \ /  _  \  _______ __ __ |  |   ____   ______\n'
-+ ' ' * (screen_width-i)
-+ '|    |  _/ /  /_\  \  \_  __ \  |  \  | _/ __ \ /  ___/\n'
-+ ' ' * (screen_width-i)
-+ '|    |   \/    |    \  |  | \/  |  /  |_\  ___/ \___ \ ' + '\n'
-+ ' ' * (screen_width-i)
-+ '|______  /\____|__  /  |__|  |____/|____/\___  >____  >\n'
-+ ' ' * (screen_width-i)
-+ '       \/         \/                         \/     \/\n')
-    input()
-    print('And \33[31mNOW\33[0m')
-    print('\n\t\33[34mYOU\33[0m must save the world')
-    input()
-    os.system(systema)
-    print('''
-    Game rules are very simple if you know what
-    Ulama, Prime or Happy numbers are.
-    Don't you?
-    Then try this game and learn it. Save \33[34mWORLD\33[37m from dAngEr!!!
-    *** The world will corrupt if all fields of numbers are filled =( ***
-    ''')
-    input("  Yes, I'm in (press 'yes' \n  No, I'm in (press any key) ")
-
+    # shows inroduction and prologue
+    intro()
     
     # main loop of the program
-    num1 = next_level(Ulama, Prime, Happy)
-
+    global goal_number
+    goal_number = 500
     while game_is_playing:
         
         
         # show table of numbers
         output(all_numbers)
+
+        # show colour description
+        colour_description()
+ 
+        all_numbers = change_level(all_numbers, goal_number)
+        if goal_number == 3:
+            break
         # check if there is any 0 to contionue
         if check_for_lose(all_numbers):
             print('Evil wins, you are loser')
             break
-
-        # show colour description
-        colour_description()
-
+        
         # show list of opened numbers
 
         print('\33[31mList of  Ulam numbers, you have opened:' \
@@ -659,6 +671,7 @@ if __name__ == '__main__':
             if x > 10:
                 print('You lost, try again :(')
                 break
+
         
         # making game physics - add to side
 
@@ -672,17 +685,11 @@ if __name__ == '__main__':
             all_numbers = add_right(all_numbers)
 
         
-        if num1 in opened_happy+opened_prime+opened_ulam:
-            print('Cool!\n You are great!')
-            gamemod += 1
-            if gamemod == 3:
-                print('You are brave soldier')
-                print('Now the world is safe')
-                break
-            num1 = next_level(Ulama, Prime, Happy)
 
 
         # generate new numbers
+        if gamemod == 2:
+            spawn_number(all_numbers, a)
         spawn_number(all_numbers, a)
         spawn_number(all_numbers, a)
 
