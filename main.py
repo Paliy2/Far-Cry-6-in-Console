@@ -1,6 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# Developers are:
+# Domeretskyi Yewgen( Домерецький Євген)
+# Chikita Maksym( Чікіта Максим)
+# Fylypchuk Yarema( Филипчук Ярема)
+
 import os
 import math 
 import random
