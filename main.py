@@ -4,6 +4,7 @@
 import os
 import math 
 import random
+import time 
 
 
 # task to reach next level
@@ -588,13 +589,24 @@ if __name__ == '__main__':
        =='  '==
     ''')
     input()
-    os.system(systema)
-    print('''__________    _____                 .__                 
-\______   \  /  _  \   _______ __ __|  |   ____   ______
- |    |  _/ /  /_\  \  \_  __ \  |  \  | _/ __ \ /  ___/
- |    |   \/    |    \  |  | \/  |  /  |_\  ___/ \___ \ 
- |______  /\____|__  /  |__|  |____/|____/\___  >____  >
-        \/         \/                         \/     \/ ''')
+    screen_width = 79
+    for i in range(screen_width):
+        time.sleep(0.2)
+        os.system(systema)
+        
+        # print(' '*(40-i), end='')
+        print(' '*(screen_width - i) 
++ '__________   _____                 .__\n'               
++ ' ' * (screen_width-i)
++ '\______   \ /  _  \  _______ __ __ |  |   ____   ______\n'
++ ' ' * (screen_width-i)
++ '|    |  _/ /  /_\  \  \_  __ \  |  \  | _/ __ \ /  ___/\n'
++ ' ' * (screen_width-i)
++ '|    |   \/    |    \  |  | \/  |  /  |_\  ___/ \___ \ ' + '\n'
++ ' ' * (screen_width-i)
++ '|______  /\____|__  /  |__|  |____/|____/\___  >____  >\n'
++ ' ' * (screen_width-i)
++ '       \/         \/                         \/     \/\n')
     input()
     print('And \33[31mNOW\33[0m')
     print('\n\t\33[34mYOU\33[0m must save the world')
