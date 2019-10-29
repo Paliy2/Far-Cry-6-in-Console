@@ -504,7 +504,7 @@ def check_for_lose(lst):
 #    if os.name == 'nt':
 #        systema = 'cls'
 #    elif os.name == 'posix':
- #       systema = 'clear'
+#       systema = 'clear'
 #    else:
 #        systema = '\33c'
 
@@ -601,11 +601,11 @@ if __name__ == '__main__':
     input()
     os.system(systema)
     print('''
-    Game rule is very simple if you know what is 
-    Ulama, Prime or Happy numbers.
+    Game rules are very simple if you know what
+    Ulama, Prime or Happy numbers are.
     Don't you?
-    Then try and learn, save \33[34mWORLD\33[37m from dAngEr!!!
-    *** The world is corrupted if all fields of numbers are filled =( ***
+    Then try this game and learn it. Save \33[34mWORLD\33[37m from dAngEr!!!
+    *** The world will corrupt if all fields of numbers are filled =( ***
     ''')
     input("  Yes, I'm in (press 'yes' \n  No, I'm in (press any key) ")
 
@@ -677,7 +677,7 @@ if __name__ == '__main__':
         # clear terminal - not macos well-supported 
         os.system(systema)
 if gamemod != 3:
-    print('game was hard, dont worry< all will be OK')
+    print("game was hard, don't worry< all will be OK")
 else:
     print('Try again by reloading game or say goodbye to our developers')
     input('Press any key... ')
@@ -686,7 +686,7 @@ def tytry():
     '''
     outputs names of developers on screen
     Yewgen Domeretskyi
-    Maks Chikita
+    Max Chikita
     Yarema Fylypchuk
     '''
     import time 
@@ -698,6 +698,6 @@ def tytry():
         print('\n' * (35-i))
         print('The best developers ever ')
         print()
-        print('   Yewgeiniok\n4_20_kizynya\n   Yarik_bachok')
+        print('   Yewgeiniok\n4_20\n   Yarik_bachok')
 
 tytry()
