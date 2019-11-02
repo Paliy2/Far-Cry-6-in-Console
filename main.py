@@ -542,21 +542,21 @@ def change_level(all_numbers, number):
     500*k is reached
     if 4th level is passed then player wins
     '''
-        global goal_number
-        global gamemod
-        for i in range(len(all_numbers)):
-            for k in range(len(all_numbers[i])):
-                if all_numbers[i][k] >= goal_number:
-                    all_numbers[i][k] = 0 
-                    print('Cool!\n You are great!')
-                    gamemod += 1
-                    goal_number += 500
-                    if gamemod == 3:
-                        print('You are brave soldier')
-                        print('Now the world is safe')
-                        game_is_playing = False
-                    input('Press enter to continue ... ')
-        return all_numbers
+    global goal_number
+    global gamemod
+    for i in range(len(all_numbers)):
+        for k in range(len(all_numbers[i])):
+            if all_numbers[i][k] >= goal_number:
+                all_numbers[i][k] = 0 
+                print('Cool!\n You are great!')
+                gamemod += 1
+                goal_number += 500
+                if gamemod == 3:
+                    print('You are brave soldier')
+                    print('Now the world is safe')
+                    game_is_playing = False
+                input('Press enter to continue ... ')
+    return all_numbers
 
 
 # prints score into terminal
@@ -717,9 +717,19 @@ if __name__ == '__main__':
         os.system(systema)
 if gamemod != 3:
     print("game was hard, don't worry< all will be OK")
+    a = ''
+    while a != 'killself':
+        a = input('Press killself to die... ')
+        a = a.lower().replace(' ', '').replace('.', '')
+    os.system(systema)
+    print("HA-HA-HA")
+    time.sleep(2)
+    print('Good bye in Hell!!!')
+    time.sleep(4)
 else:
     print('Try again by reloading game or say goodbye to our developers')
-    input('Press any key... ')
+    time.sleep(3)
+    input('Press any key to win... ')
 
     
 def tytry():
